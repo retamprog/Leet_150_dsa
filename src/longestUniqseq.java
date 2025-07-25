@@ -1,11 +1,35 @@
 import java.util.HashSet;
+import java.util.Arrays;
 public class longestUniqseq{
-    // public static int longestUniqSub(String s){
-    //     int n=s.length();
-    //     int chrIdx[]=new int[128];// this array will store the character occurences index..(the current one) 
-    //     //i think this approach should work..
-
-    // }
+  // using index character array
+    public static int longestUniqSub(String s){
+        int n=s.length();
+        int chrIdx[]=new int[128];// this array will store the character occurences index..(the current one) 
+        //i think this approach should work..
+        // this approach will use the same logic as in sliding window;
+        Arrays.fill(chrIdx,-1);
+        int maxLength=0;
+        int left=0;
+        for(int right=0;right<n;right++){
+            char current=s.charAt(right);
+              if(chrIdx[(int)current]==-1){
+                 // the element has not yet been visited
+                chrIdx[(int)current]=right; 
+                maxLength=Math.max(maxLength,right-left+1);
+              }
+              else{
+                // if the character is already recorded in the array then we must move the left pointer and remove 
+                // the left characters as we move the left pointer...
+                while(left<=chrIdx[(int)current]){
+                   chrIdx[(int)s.charAt(left)]=-1;
+                   left++;
+                }
+                chrIdx[(int)current]=right;
+              }
+        }
+        return maxLength;
+    }
+    // using hashset..
     public static int longest_uniq_sequence(String test){
         // going to do the problem using hashset 
         // so after a dry run i got where my problem was .. 
@@ -42,6 +66,15 @@ public class longestUniqseq{
         String test7="asjrgapa";
         String test8="dgqravdftuhmkbol,[]";
         String test9="eeydgwdykpv";
-        System.out.println("Length of the longest unique subsequence is "+longest_uniq_sequence(test9));
+        // System.out.println("Length of the longest unique subsequence is "+longest_uniq_sequence(test9));
+        System.out.println("Max longest uniq substring.. "+longestUniqSub(test1));
+        System.out.println("Max longest uniq substring.. "+longestUniqSub(test2));
+        System.out.println("Max longest uniq substring.. "+longestUniqSub(test3));
+        System.out.println("Max longest uniq substring.. "+longestUniqSub(test4));
+        System.out.println("Max longest uniq substring.. "+longestUniqSub(test5));
+        System.out.println("Max longest uniq substring.. "+longestUniqSub(test6));
+        System.out.println("Max longest uniq substring.. "+longestUniqSub(test7));
+        System.out.println("Max longest uniq substring.. "+longestUniqSub(test8));
+        System.out.println("Max longest uniq substring.. "+longestUniqSub(test9));
     }
 }

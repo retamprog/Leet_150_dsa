@@ -1,0 +1,32 @@
+just want to see recreate the longest uniq characters substring problem to optilize my solution
+
+let retrace back my steps
+1> first i tried to do the problem using HashMap but it was a disaster but now I have figured out what was going wrong in my apporach
+2> then i tried sliding window along with hashset which after a few tweaks , i understood the problem in my logic mainly the shifting
+of the left pointer, i was not doing that correctly(its base logic is same as minSubarray..)
+3> then i used a index character array to store the index of the current character in the string and used the abvove logic but my logic can still be improved..
+meaning i can lose the while loop for moving the left pointer .. just simple intuition saying so..
+
+test case:
+
+t m m z u x t ans--->5
+0 1 2 3 4 5 6
+
+index[]={}
+left =0;
+right=0;//the current character pointer
+
+iteration 1:
+left=0;right=0; index[(int)t]=0;
+iteration 2:
+left=0;right=1; index[(int)m]=1;
+iteration 3:
+right=2; left = max(left,index[(int)character at right]+1);
+
+d v d f
+0 1 2 3
+
+iteration 1:
+left=0;right=0; index[d]=0;
+iteration 2:
+left
