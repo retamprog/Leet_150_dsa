@@ -29,7 +29,23 @@ public class longestUniqseq{
         }
         return maxLength;
     }
-    // using hashset..
+    public static int optimized_slidingwindow(String s){
+        // yup this method will do the optimized sliding window problem using optimized left pointer movement logic...
+	int n=s.length();
+	int left=0;
+	int chrIdx[]=new int[128];
+	int maxLength=0;
+	for(int right=0;right<n;right++){
+	   // current storing the current character..
+	   char current=s.charAt(right);
+	   // starting of the loop we will check the position of the left pointer and update it if required
+	   left=Math.max(chrIdx[current]+1,left);
+           maxLength=Math.max(maxLength,right-left+1);
+	   chrIdx[current]=right;// updating the new pos of the current character after moving the left pointer to the repeated character one place after it... 
+	}
+	return maxLength;
+    }
+    // using hashset
     public static int longest_uniq_sequence(String test){
         // going to do the problem using hashset 
         // so after a dry run i got where my problem was .. 
@@ -67,14 +83,18 @@ public class longestUniqseq{
         String test8="dgqravdftuhmkbol,[]";
         String test9="eeydgwdykpv";
         // System.out.println("Length of the longest unique subsequence is "+longest_uniq_sequence(test9));
-        System.out.println("Max longest uniq substring.. "+longestUniqSub(test1));
-        System.out.println("Max longest uniq substring.. "+longestUniqSub(test2));
-        System.out.println("Max longest uniq substring.. "+longestUniqSub(test3));
-        System.out.println("Max longest uniq substring.. "+longestUniqSub(test4));
-        System.out.println("Max longest uniq substring.. "+longestUniqSub(test5));
-        System.out.println("Max longest uniq substring.. "+longestUniqSub(test6));
-        System.out.println("Max longest uniq substring.. "+longestUniqSub(test7));
-        System.out.println("Max longest uniq substring.. "+longestUniqSub(test8));
-        System.out.println("Max longest uniq substring.. "+longestUniqSub(test9));
+        System.out.println("Max longest uniq substring.. "+optimized_slidingwindow(test1));
+        System.out.println("Max longest uniq substring.. "+optimized_slidingwindow(test2));
+        System.out.println("Max longest uniq substring.. "+optimized_slidingwindow(test3));
+        System.out.println("Max longest uniq substring.. "+optimized_slidingwindow(test4));
+        System.out.println("Max longest uniq substring.. "+optimized_slidingwindow(test5));
+        System.out.println("Max longest uniq substring.. "+optimized_slidingwindow(test6));
+        System.out.println("Max longest uniq substring.. "+optimized_slidingwindow(test7));
+        System.out.println("Max longest uniq substring.. "+optimized_slidingwindow(test8));
+        System.out.println("Max longest uniq substring.. "+optimized_slidingwindow(test9));
     }
 }
+
+
+
+
