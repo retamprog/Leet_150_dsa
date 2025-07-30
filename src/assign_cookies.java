@@ -10,16 +10,13 @@ public class assign_cookies {
         int i=0;
         int j=0;
         int count=0;
-        while(i<n){
-            if(j<m && g[i]<=s[j]){
-                count++;
-                i++;
-            }
-             
-            j++;
-            if(j>=m)
-            break;
-        }
+       while(i<n && j<m){
+          if(g[i]<=s[j]){
+              count++;
+              i++;
+          }
+          j++;
+       }
         return count;
     }
     public static void main(String args[]){
